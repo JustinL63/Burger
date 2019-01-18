@@ -3,10 +3,18 @@
 <h2>Burgers that have been eaten!</h2>
 
 <ul>
-  {{#each Burger}}
-    {{#unless Burger}}
-      {{> burgers/burger-block eaten=true}}
+  {{#each data}}
+    {{#unless this.devoured}}
+     <pre>{{this.id}}. {{this.burger}}</pre>
     {{/unless}}
+  {{/each}}
+</ul>
+
+<ul>
+  {{#each data}}
+    {{#if this.devoured}}
+      
+    {{/if}}
   {{/each}}
 </ul>
 
@@ -17,14 +25,15 @@
 
   <div class="form-group">
     <label for="ca">Burger Name:</label>
-    <input type="text" id="ca" name="name">
+    
   </div>
 
-  <div class="form-group">
+  <form action="/api/burgers" method="POST" class="form-group addBurger">
     <label for="devoured">Devoured?</label><br>
-    <input type="radio" name="devoured" value="1" checked> Devoured!<br>
-    <input type="radio" name="notDevoured" value="0"> Not Devoured
-  </div>
+    <input class="id" type="text" name="burger" value="" >
+    
+    <button type="submit">Add Burger</button>
+  </form>
 
-  <button type="submit">Add Burger</button>
+  
 </form>
